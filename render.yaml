@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: telegram-session-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python payment_worker.py & python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: COINBASE_API_KEY
+        sync: false
+      - key: COINBASE_WEBHOOK_SECRET
+        sync: false
+      - key: TELEGRAM_API_ID
+        sync: false
+      - key: TELEGRAM_API_HASH
+        sync: false
+      - key: OWNER_ID
+        value: "1377923423"
+      - key: WEBHOOK_ENABLED
+        value: "true"
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+
+databases:
+  - name: telegram-bot-db
+    databaseName: telegram_bot
+    user: telegram_bot_user
